@@ -21,15 +21,18 @@ webpackJsonp([0,1],[
 	  'div',
 	  { style: { marginLeft: 10 } },
 	  React.createElement(GitHubButton, { type: 'stargazers', size: 'large',
-	    namespace: 'benjycui', repo: 'react-github-button' }),
+	    namespace: 'benjycui', repo: 'react-github-button'
+	  }),
 	  React.createElement('br', null),
 	  React.createElement('br', null),
 	  React.createElement(GitHubButton, { type: 'watchers',
-	    namespace: 'benjycui', repo: 'react-github-button' }),
+	    namespace: 'benjycui', repo: 'react-github-button'
+	  }),
 	  React.createElement('br', null),
 	  React.createElement('br', null),
 	  React.createElement(GitHubButton, { type: 'forks',
-	    namespace: 'benjycui', repo: 'react-github-button' }),
+	    namespace: 'benjycui', repo: 'react-github-button'
+	  }),
 	  React.createElement('br', null),
 	  React.createElement('br', null)
 	), document.getElementById('__react-content'));
@@ -19706,41 +19709,58 @@ webpackJsonp([0,1],[
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      (0, _ajaxGet2.default)(this.getRepoUrl(), function (data) {
+	      (0, _ajaxGet2.default)(this.getRequestUrl(), function (data) {
 	        var count = data[_this2.props.type + '_count'];
 	        _this2.setState({ count: count });
 	      });
 	    }
 	  }, {
-	    key: 'getRepoUrl',
-	    value: function getRepoUrl() {
+	    key: 'getRequestUrl',
+	    value: function getRequestUrl() {
 	      var _props = this.props;
 	      var namespace = _props.namespace;
 	      var repo = _props.repo;
+	
+	      return '//api.github.com/repos/' + namespace + '/' + repo;
+	    }
+	  }, {
+	    key: 'getRepoUrl',
+	    value: function getRepoUrl() {
+	      var _props2 = this.props;
+	      var namespace = _props2.namespace;
+	      var repo = _props2.repo;
 	
 	      return '//github.com/' + namespace + '/' + repo + '/';
 	    }
 	  }, {
 	    key: 'getCountUrl',
 	    value: function getCountUrl() {
-	      var _props2 = this.props;
-	      var namespace = _props2.namespace;
-	      var repo = _props2.repo;
-	      var type = _props2.type;
+	      var _props3 = this.props;
+	      var namespace = _props3.namespace;
+	      var repo = _props3.repo;
+	      var type = _props3.type;
 	
 	      return '//github.com/' + namespace + '/' + repo + '/' + (typeToPath[type] || type) + '/';
 	    }
 	  }, {
+	    key: 'getCountStyle',
+	    value: function getCountStyle() {
+	      var count = this.state.count;
+	      if (count !== null) {
+	        return {
+	          display: 'block'
+	        };
+	      }
+	      return null;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props3 = this.props;
-	      var type = _props3.type;
-	      var size = _props3.size;
+	      var _props4 = this.props;
+	      var type = _props4.type;
+	      var size = _props4.size;
 	
 	      var count = this.state.count;
-	      var countStyle = {
-	        display: count === null ? 'none' : 'block'
-	      };
 	      return _react2.default.createElement(
 	        'span',
 	        { className: 'github-btn ' + (size === 'large' ? 'github-btn-large' : '') },
@@ -19756,7 +19776,10 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'gh-count', href: this.getCountUrl(), target: '_blank', style: countStyle },
+	          { className: 'gh-count', target: '_blank',
+	            href: this.getCountUrl(),
+	            style: this.getCountStyle()
+	          },
 	          count
 	        )
 	      );
@@ -19771,7 +19794,9 @@ webpackJsonp([0,1],[
 	
 	GitHubButton.propTypes = {
 	  type: _react.PropTypes.oneOf(['stargazers', 'watchers', 'forks']),
-	  size: _react.PropTypes.oneOf(['large'])
+	  size: _react.PropTypes.oneOf(['large']),
+	  namespace: _react.PropTypes.string,
+	  repo: _react.PropTypes.string
 	};
 	module.exports = exports['default'];
 
