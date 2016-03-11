@@ -21,29 +21,36 @@ export default class GitHubButton extends React.Component {
   }
 
   componentDidMount() {
-    ajaxGet('https://api.github.com/repos/benjycui/mark-twain', (data) => {
+    ajaxGet(this.getRepoUrl(), (data) => {
       const count = data[`${this.props.type}_count`];
       this.setState({ count });
     });
   }
+
+  getRepoUrl() {
+    const { namespace, repo } = this.props;
+    return `//github.com/${namespace}/${repo}/`;
+  }
+
+  getCountUrl() {
+    const { namespace, repo, type } = this.props;
+    return `//github.com/${namespace}/${repo}/${typeToPath[type] || type}/`;
+  }
   
   render() {
-    const { type, namespace, repo, size } = this.props;
-    const repoUrl = `//github.com/${namespace}/${repo}/`
-    const countUrl = `//github.com/${namespace}/${repo}/${typeToPath[type] || type}/`;
-    const state = this.state;
-    const count = state.count;
+    const { type, size } = this.props;
+    const count = this.state.count;
     const countStyle = {
       display: count === null ? 'none' : 'block',
     };
     return (
       <span className={`github-btn ${size === 'large' ? 'github-btn-large' : ''}`}>
-        <a className="gh-btn" href={repoUrl} target="_blank">
+        <a className="gh-btn" href={this.getRepoUrl()} target="_blank">
           <span className="gh-ico" aria-hidden="true"></span>
           <span className="gh-text">{ typeToLabel[type] }</span>
         </a>
-        <a className="gh-count" href={countUrl} target="_blank" style={countStyle}>
-          { state.count }
+        <a className="gh-count" href={this.getCountUrl()} target="_blank" style={countStyle}>
+          { count }
         </a>
       </span>
     );

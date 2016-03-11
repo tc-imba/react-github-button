@@ -7,6 +7,6 @@ export default function ajaxGet(url, callback) {
       callback(JSON.parse(xhr.responseText));
     }
   };
-  xhr.open('GET', url);
+  xhr.open('GET', url, true);
   xhr.send();
 }
