@@ -19706,24 +19706,38 @@ webpackJsonp([0,1],[
 	    value: function componentDidMount() {
 	      var _this2 = this;
 	
-	      (0, _ajaxGet2.default)('https://api.github.com/repos/benjycui/mark-twain', function (data) {
+	      (0, _ajaxGet2.default)(this.getRepoUrl(), function (data) {
 	        var count = data[_this2.props.type + '_count'];
 	        _this2.setState({ count: count });
 	      });
 	    }
 	  }, {
-	    key: 'render',
-	    value: function render() {
+	    key: 'getRepoUrl',
+	    value: function getRepoUrl() {
 	      var _props = this.props;
-	      var type = _props.type;
 	      var namespace = _props.namespace;
 	      var repo = _props.repo;
-	      var size = _props.size;
 	
-	      var repoUrl = '//github.com/' + namespace + '/' + repo + '/';
-	      var countUrl = '//github.com/' + namespace + '/' + repo + '/' + (typeToPath[type] || type) + '/';
-	      var state = this.state;
-	      var count = state.count;
+	      return '//github.com/' + namespace + '/' + repo + '/';
+	    }
+	  }, {
+	    key: 'getCountUrl',
+	    value: function getCountUrl() {
+	      var _props2 = this.props;
+	      var namespace = _props2.namespace;
+	      var repo = _props2.repo;
+	      var type = _props2.type;
+	
+	      return '//github.com/' + namespace + '/' + repo + '/' + (typeToPath[type] || type) + '/';
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props3 = this.props;
+	      var type = _props3.type;
+	      var size = _props3.size;
+	
+	      var count = this.state.count;
 	      var countStyle = {
 	        display: count === null ? 'none' : 'block'
 	      };
@@ -19732,7 +19746,7 @@ webpackJsonp([0,1],[
 	        { className: 'github-btn ' + (size === 'large' ? 'github-btn-large' : '') },
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'gh-btn', href: repoUrl, target: '_blank' },
+	          { className: 'gh-btn', href: this.getRepoUrl(), target: '_blank' },
 	          _react2.default.createElement('span', { className: 'gh-ico', 'aria-hidden': 'true' }),
 	          _react2.default.createElement(
 	            'span',
@@ -19742,8 +19756,8 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	          'a',
-	          { className: 'gh-count', href: countUrl, target: '_blank', style: countStyle },
-	          state.count
+	          { className: 'gh-count', href: this.getCountUrl(), target: '_blank', style: countStyle },
+	          count
 	        )
 	      );
 	    }
@@ -19779,7 +19793,7 @@ webpackJsonp([0,1],[
 	      callback(JSON.parse(xhr.responseText));
 	    }
 	  };
-	  xhr.open('GET', url);
+	  xhr.open('GET', url, true);
 	  xhr.send();
 	}
 	module.exports = exports['default'];
