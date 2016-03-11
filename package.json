@@ -6,6 +6,7 @@
   "scripts": {
     "start": "rc-tools run server",
     "pub": "rc-tools run pub",
+    "lint": "rc-tools run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "config": {
