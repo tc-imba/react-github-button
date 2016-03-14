@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
-  <title>react-github-button@0.1.0 - Unofficial GitHub buttons in React.</title>
+  <title>react-github-button@0.1.1 - Unofficial GitHub buttons in React.</title>
   <style>
     @font-face {
       font-family: octicons-anchor;
@@ -737,7 +737,7 @@
 
 <body>
 <div class="header">
-  <h1>react-github-button@0.1.0</h1>
+  <h1>react-github-button@0.1.1</h1>
 </div>
 <div class="examples">
   <h3>EXAMPLES</h3>
@@ -753,6 +753,26 @@
   <h3>README.md</h3>
   <div class="markdown-body">
     <h1>react-github-button<a id="user-content-react-github-button" name="react-github-button" class="anchor" aria-hidden="true" href="#react-github-button"><span class="octicon octicon-link"></span></a></h1><p>Unofficial GitHub buttons in React.</p>
+<h2>Installation<a id="user-content-installation" name="installation" class="anchor" aria-hidden="true" href="#installation"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="bash">npm install --save react-github-button</code></pre></div><h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="xml">import GitHubButton from 'react-github-button';
+
+ReactDOM.render(
+  <span class="hljs-tag">&lt;<span class="hljs-title">GitHubButton</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"stargazers"</span> <span class="hljs-attribute">size</span>=<span class="hljs-value">"large"</span> <span class="hljs-attribute">namespace</span>=<span class="hljs-value">"benjycui"</span> <span class="hljs-attribute">repo</span>=<span class="hljs-value">"react-github-button"</span> /&gt;</span>
+  , mountNode
+);</code></pre></div><h2>API<a id="user-content-api" name="api" class="anchor" aria-hidden="true" href="#api"><span class="octicon octicon-link"></span></a></h2><h3>type<a id="user-content-type" name="type" class="anchor" aria-hidden="true" href="#type"><span class="octicon octicon-link"></span></a></h3><blockquote>
+<p>Enum{ &#39;stargazers&#39;, &#39;watchers&#39;, &#39;forks&#39; }</p>
+</blockquote>
+<h3>size<a id="user-content-size" name="size" class="anchor" aria-hidden="true" href="#size"><span class="octicon octicon-link"></span></a></h3><blockquote>
+<p>Enum{ &#39;default&#39;, &#39;large&#39; }</p>
+</blockquote>
+<h3>namespace<a id="user-content-namespace" name="namespace" class="anchor" aria-hidden="true" href="#namespace"><span class="octicon octicon-link"></span></a></h3><blockquote>
+<p>String</p>
+</blockquote>
+<p>Your GitHub id or organization name.</p>
+<h3>repo<a id="user-content-repo" name="repo" class="anchor" aria-hidden="true" href="#repo"><span class="octicon octicon-link"></span></a></h3><blockquote>
+<p>String</p>
+</blockquote>
+<p>The name of your repository.</p>
+<h2>Liscense<a id="user-content-liscense" name="liscense" class="anchor" aria-hidden="true" href="#liscense"><span class="octicon octicon-link"></span></a></h2><p>MIT</p>
 
   </div>
 </div>
