@@ -2,7 +2,7 @@
   "name": "react-github-button",
   "version": "0.1.1",
   "description": "Unofficial GitHub buttons in React.",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "start": "rc-tools run server",
     "pub": "rc-tools run pub",
