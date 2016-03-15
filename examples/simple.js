@@ -10,7 +10,7 @@ ReactDOM.render(
       namespace="benjycui" repo="react-github-button"
     />
     <br /><br />
-    <GitHubButton type="watchers" size="large"
+    <GitHubButton type="watchers" style={{color: 'red'}}
       namespace="benjycui" repo="react-github-button"
     />
     <br /><br />

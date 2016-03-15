@@ -54,7 +54,7 @@ export default class GitHubButton extends React.Component {
   }
 
   render() {
-    const { className, type, size } = this.props;
+    const { className, type, size, ...rest } = this.props;
     const count = this.state.count;
     const buttonClassName = utils.classNames({
       'github-btn': true,
@@ -63,7 +63,7 @@ export default class GitHubButton extends React.Component {
     });
 
     return (
-      <span className={buttonClassName}>
+      <span {...rest} className={buttonClassName}>
         <a className="gh-btn" href={this.getRepoUrl()} target="_blank">
           <span className="gh-ico" aria-hidden="true"></span>
           <span className="gh-text">{ typeToLabel[type] }</span>
