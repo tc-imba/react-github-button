@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ajaxGet from './ajaxGet';
+import * as utils from './utils';
 
 const typeToLabel = {
   stargazers: 'Star',
@@ -53,10 +54,16 @@ export default class GitHubButton extends React.Component {
   }
 
   render() {
-    const { type, size } = this.props;
+    const { className, type, size } = this.props;
     const count = this.state.count;
+    const buttonClassName = utils.classNames({
+      'github-btn': true,
+      'github-btn-large': size === 'large',
+      [className]: className,
+    });
+
     return (
-      <span className={`github-btn ${size === 'large' ? 'github-btn-large' : ''}`}>
+      <span className={buttonClassName}>
         <a className="gh-btn" href={this.getRepoUrl()} target="_blank">
           <span className="gh-ico" aria-hidden="true"></span>
           <span className="gh-text">{ typeToLabel[type] }</span>

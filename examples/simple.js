@@ -10,11 +10,11 @@ ReactDOM.render(
       namespace="benjycui" repo="react-github-button"
     />
     <br /><br />
-    <GitHubButton type="watchers"
+    <GitHubButton type="watchers" size="large"
       namespace="benjycui" repo="react-github-button"
     />
     <br /><br />
-    <GitHubButton type="forks"
+    <GitHubButton className="hallo" type="forks"
       namespace="benjycui" repo="react-github-button"
     />
     <br /><br />
