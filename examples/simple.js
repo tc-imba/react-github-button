@@ -25,12 +25,12 @@ webpackJsonp([0,1],[
 	  }),
 	  React.createElement('br', null),
 	  React.createElement('br', null),
-	  React.createElement(GitHubButton, { type: 'watchers',
+	  React.createElement(GitHubButton, { type: 'watchers', style: { color: 'red' },
 	    namespace: 'benjycui', repo: 'react-github-button'
 	  }),
 	  React.createElement('br', null),
 	  React.createElement('br', null),
-	  React.createElement(GitHubButton, { type: 'forks',
+	  React.createElement(GitHubButton, { className: 'hallo', type: 'forks',
 	    namespace: 'benjycui', repo: 'react-github-button'
 	  }),
 	  React.createElement('br', null),
@@ -19662,6 +19662,8 @@ webpackJsonp([0,1],[
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(3);
@@ -19672,7 +19674,17 @@ webpackJsonp([0,1],[
 	
 	var _ajaxGet2 = _interopRequireDefault(_ajaxGet);
 	
+	var _utils = __webpack_require__(164);
+	
+	var utils = _interopRequireWildcard(_utils);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -19757,13 +19769,21 @@ webpackJsonp([0,1],[
 	    key: 'render',
 	    value: function render() {
 	      var _props4 = this.props;
+	      var className = _props4.className;
 	      var type = _props4.type;
 	      var size = _props4.size;
 	
+	      var rest = _objectWithoutProperties(_props4, ['className', 'type', 'size']);
+	
 	      var count = this.state.count;
+	      var buttonClassName = utils.classNames(_defineProperty({
+	        'github-btn': true,
+	        'github-btn-large': size === 'large'
+	      }, className, className));
+	
 	      return _react2.default.createElement(
 	        'span',
-	        { className: 'github-btn ' + (size === 'large' ? 'github-btn-large' : '') },
+	        _extends({}, rest, { className: buttonClassName }),
 	        _react2.default.createElement(
 	          'a',
 	          { className: 'gh-btn', href: this.getRepoUrl(), target: '_blank' },
@@ -19822,6 +19842,22 @@ webpackJsonp([0,1],[
 	  xhr.send();
 	}
 	module.exports = exports['default'];
+
+/***/ },
+/* 164 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.classNames = classNames;
+	function classNames(classSet) {
+	  return Object.keys(classSet).filter(function (key) {
+	    return classSet[key];
+	  }).join(' ');
+	}
 
 /***/ }
 ]);
