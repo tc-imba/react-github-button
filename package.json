@@ -7,7 +7,7 @@
     "start": "rc-tools run server",
     "pub": "rc-tools run pub",
     "lint": "rc-tools run lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "config": {
     "port": 8000
@@ -29,8 +29,9 @@
   },
   "homepage": "https://github.com/benjycui/react-github-button#readme",
   "devDependencies": {
-    "rc-tools": "^5.2.6",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "mocha": "^2.5.3",
+    "rc-tools": "^5.5.11",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0"
   }
 }

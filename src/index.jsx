@@ -12,37 +12,44 @@ const typeToPath = {
   forks: 'network',
 };
 
-export default class GitHubButton extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+export default React.createClass({
+  displayName: 'GitHubButton',
+  propTypes: {
+    className: PropTypes.string,
+    type: PropTypes.oneOf([
+      'stargazers',
+      'watchers',
+      'forks',
+    ]).isRequired,
+    size: PropTypes.oneOf([
+      'large',
+    ]),
+    namespace: PropTypes.string.isRequired,
+    repo: PropTypes.string.isRequired,
+  },
+  getInitialState() {
+    return {
       count: null,
     };
-  }
-
+  },
   componentDidMount() {
     ajaxGet(this.getRequestUrl(), (data) => {
       const count = data[`${this.props.type}_count`];
       this.setState({ count });
     });
-  }
-
+  },
   getRequestUrl() {
     const { namespace, repo } = this.props;
     return `//api.github.com/repos/${namespace}/${repo}`;
-  }
-
+  },
   getRepoUrl() {
     const { namespace, repo } = this.props;
     return `//github.com/${namespace}/${repo}/`;
-  }
-
+  },
   getCountUrl() {
     const { namespace, repo, type } = this.props;
     return `//github.com/${namespace}/${repo}/${typeToPath[type] || type}/`;
-  }
-
+  },
   getCountStyle() {
     const count = this.state.count;
     if (count !== null) {
@@ -51,11 +58,14 @@ export default class GitHubButton extends React.Component {
       };
     }
     return null;
-  }
-
+  },
   render() {
     const { className, type, size, ...rest } = this.props;
+    delete rest.namespace;
+    delete rest.repo;
+
     const count = this.state.count;
+
     const buttonClassName = utils.classNames({
       'github-btn': true,
       'github-btn-large': size === 'large',
@@ -76,18 +86,5 @@ export default class GitHubButton extends React.Component {
         </a>
       </span>
     );
-  }
-}
-
-GitHubButton.propTypes = {
-  type: PropTypes.oneOf([
-    'stargazers',
-    'watchers',
-    'forks',
-  ]),
-  size: PropTypes.oneOf([
-    'large',
-  ]),
-  namespace: PropTypes.string,
-  repo: PropTypes.string,
-};
+  },
+});
