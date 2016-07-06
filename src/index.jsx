@@ -21,11 +21,11 @@ export default React.createClass({
       'watchers',
       'forks',
     ]).isRequired,
+    namespace: PropTypes.string.isRequired,
+    repo: PropTypes.string.isRequired,
     size: PropTypes.oneOf([
       'large',
     ]),
-    namespace: PropTypes.string.isRequired,
-    repo: PropTypes.string.isRequired,
   },
   getInitialState() {
     return {
@@ -33,10 +33,11 @@ export default React.createClass({
     };
   },
   componentDidMount() {
-    ajaxGet(this.getRequestUrl(), (data) => {
-      const count = data[`${this.props.type}_count`];
-      this.setState({ count });
-    });
+    ajaxGet(this.getRequestUrl(), this.setCount);
+  },
+  setCount(data) {
+    const count = data[`${this.props.type}_count`];
+    this.setState({ count });
   },
   getRequestUrl() {
     const { namespace, repo } = this.props;
