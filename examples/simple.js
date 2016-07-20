@@ -21023,7 +21023,12 @@ webpackJsonp([0,1],[
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    (0, _ajaxGet2.default)(this.getRequestUrl(), this.setCount);
+	    this.xhr = (0, _ajaxGet2.default)(this.getRequestUrl(), this.setCount);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    if (this.xhr) {
+	      this.xhr.abort();
+	    }
 	  },
 	  setCount: function setCount(data) {
 	    var count = data[this.props.type + '_count'];
@@ -21124,6 +21129,7 @@ webpackJsonp([0,1],[
 	  };
 	  xhr.open('GET', url, true);
 	  xhr.send();
+	  return xhr;
 	}
 	module.exports = exports['default'];
 
