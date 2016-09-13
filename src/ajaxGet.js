@@ -1,7 +1,7 @@
 export default function ajaxGet(url, callback) {
   if (typeof XDomainRequest !== 'undefined') {
     callback(null);
-    return;
+    return null;
   }
 
   const xhr = new XMLHttpRequest();
