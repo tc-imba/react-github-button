@@ -1,6 +1,6 @@
 {
   "name": "react-github-button",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Unofficial GitHub buttons in React.",
   "main": "./lib/index.js",
   "files": [

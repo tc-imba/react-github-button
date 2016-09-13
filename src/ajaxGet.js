@@ -1,6 +1,10 @@
 export default function ajaxGet(url, callback) {
-  const xhr = new XMLHttpRequest();
+  if (typeof XDomainRequest !== 'undefined') {
+    callback(null);
+    return;
+  }
 
+  const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === XMLHttpRequest.DONE &&
         xhr.status === 200) {

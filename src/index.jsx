@@ -41,6 +41,7 @@ export default React.createClass({
     }
   },
   setCount(data) {
+    if (!data) return;
     const count = data[`${this.props.type}_count`];
     this.setState({ count });
   },
