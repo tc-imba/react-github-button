@@ -9,6 +9,12 @@ const typeToLabel = {
   forks: 'Fork',
 };
 
+const typeToGitHubKey = {
+  stargazers: 'stargazers_count',
+  watchers: 'subscribers_count',
+  forks: 'forks_count',
+};
+
 const typeToPath = {
   forks: 'network',
 };
@@ -43,7 +49,7 @@ export default class GitHubButton extends React.Component {
   }
   setCount(data) {
     if (!data) return;
-    const count = data[`${this.props.type}_count`];
+    const count = data[typeToGitHubKey[this.props.type]];
     this.setState({ count });
   }
   getRequestUrl() {
