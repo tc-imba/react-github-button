@@ -1,4 +1,5 @@
-export default function ajaxGet(url, callback) {
+export default function ajaxGet(url: string, callback: any) {
+  // @ts-ignore
   if (typeof XDomainRequest !== 'undefined') {
     callback(null);
     return null;
@@ -7,7 +8,7 @@ export default function ajaxGet(url, callback) {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === XMLHttpRequest.DONE &&
-        xhr.status === 200) {
+      xhr.status === 200) {
       callback(JSON.parse(xhr.responseText));
     }
   };

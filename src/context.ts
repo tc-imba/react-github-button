@@ -1,6 +1,14 @@
 import * as React from 'react';
 
-export const defaultGitHubButtonState = {
+interface GitHubButtonStateInterface {
+  stargazers: number | null;
+  watchers: number | null;
+  forks: number | null;
+  namespace: string;
+  repo: string;
+}
+
+export const defaultGitHubButtonState : GitHubButtonStateInterface = {
   stargazers: null,
   watchers: null,
   forks: null,

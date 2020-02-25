@@ -1,4 +1,4 @@
-import GitHubButtonProvider from './components/GitHubButtonProvider';
-import GitHubButton from './components/GitHubButton';
+import GitHubButtonProvider from './GitHubButtonProvider';
+import GitHubButton from './GitHubButton';
 
 export {GitHubButtonProvider, GitHubButton};

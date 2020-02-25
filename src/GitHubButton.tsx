@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {GitHubButtonContext} from '../context';
+import {GitHubButtonContext} from './context';
 
-const classNames = function(classSet) {
+const classNames = function(classSet: any) {
   return Object.keys(classSet).filter((key) => classSet[key]).join(' ');
 };
 
@@ -51,7 +51,7 @@ class GitHubButton extends React.Component<GitHubButtonProps, GitHubButtonState>
         display: 'block',
       };
     }
-    return null;
+    return {};
   }
 
   render() {
@@ -62,14 +62,19 @@ class GitHubButton extends React.Component<GitHubButtonProps, GitHubButtonState>
 
     // const count = this.state.count;
 
-    const buttonClassName = classNames({
+    let buttonClassName = {
       'github-btn': true,
       'github-btn-large': size === 'large',
-      [className]: className,
-    });
+      // [className]: className,
+    };
+    if (className) {
+      buttonClassName[className] = className;
+    }
+
+    const buttonClassNameStr = classNames(buttonClassName);
 
     return (
-      <span {...rest} className={buttonClassName}>
+      <span {...rest} className={buttonClassNameStr}>
         <a className="gh-btn" href={this.getRepoUrl()} target="_blank">
           <span className="gh-ico" aria-hidden="true"></span>
           <span className="gh-text">{typeToLabel[type]}</span>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import {GitHubButtonContext} from '../context';
-import ajaxGet from '../ajaxGet';
+import {GitHubButtonContext} from './context';
+import ajaxGet from './ajaxGet';
 
 const typeToGitHubKey = {
   stargazers: 'stargazers_count',
@@ -15,9 +15,9 @@ export interface GitHubButtonProviderProps {
 }
 
 export interface GitHubButtonProviderState {
-  stargazers: number;
-  watchers: number;
-  forks: number;
+  stargazers: number | null;
+  watchers: number | null;
+  forks: number | null;
 }
 
 export default class GitHubButtonProvider extends React.Component<GitHubButtonProviderProps, GitHubButtonProviderState> {
@@ -38,7 +38,7 @@ export default class GitHubButtonProvider extends React.Component<GitHubButtonPr
   }
 
   updateState() {
-    this.xhr = ajaxGet(this.getRequestUrl(), (data) => {
+    this.xhr = ajaxGet(this.getRequestUrl(), (data: any) => {
       if (!data) return;
       let newState = this.state;
       for (const t in typeToGitHubKey) {
@@ -57,9 +57,7 @@ export default class GitHubButtonProvider extends React.Component<GitHubButtonPr
     }
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<GitHubButtonProviderProps>,
-    prevState: Readonly<GitHubButtonProviderState>, snapshot?: any) {
+  componentDidUpdate(prevProps: Readonly<GitHubButtonProviderProps>) {
     if (this.props.namespace !== prevProps.namespace ||
       this.props.repo !== prevProps.repo) {
       this.updateState();
