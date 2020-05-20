@@ -72,7 +72,6 @@ var defaultGitHubButtonState = {
     },
 };
 var GitHubButtonContext = React.createContext(defaultGitHubButtonState);
-//# sourceMappingURL=context.js.map
 
 function ajaxGet(url, callback) {
     // @ts-ignore
@@ -91,7 +90,6 @@ function ajaxGet(url, callback) {
     xhr.send();
     return xhr;
 }
-//# sourceMappingURL=ajaxGet.js.map
 
 var typeToGitHubKey = {
     stargazers: 'stargazers_count',
@@ -141,18 +139,20 @@ var GitHubButtonProvider = /** @class */ (function (_super) {
             console.log('namespace:', newState);
             _this.setState({ namespace: newState });
         });
-        this.repoXhr = ajaxGet(this.getRepoRequestUrl(), function (data) {
-            if (!data)
-                return;
-            var newState = _this.state.repo;
-            for (var t in typeToGitHubKey) {
-                if (data.hasOwnProperty(typeToGitHubKey[t])) {
-                    newState[t] = data[typeToGitHubKey[t]];
+        if (this.props.repo) {
+            this.repoXhr = ajaxGet(this.getRepoRequestUrl(), function (data) {
+                if (!data)
+                    return;
+                var newState = _this.state.repo;
+                for (var t in typeToGitHubKey) {
+                    if (data.hasOwnProperty(typeToGitHubKey[t])) {
+                        newState[t] = data[typeToGitHubKey[t]];
+                    }
                 }
-            }
-            console.log('repo:', newState);
-            _this.setState({ repo: newState });
-        });
+                console.log('repo:', newState);
+                _this.setState({ repo: newState });
+            });
+        }
     };
     GitHubButtonProvider.prototype.componentWillUnmount = function () {
         if (this.repoXhr) {
@@ -284,9 +284,6 @@ var GitHubButton = /** @class */ (function (_super) {
     return GitHubButton;
 }(React.Component));
 GitHubButton.contextType = GitHubButtonContext;
-//# sourceMappingURL=GitHubButton.js.map
-
-//# sourceMappingURL=index.js.map
 
 exports.GitHubButtonProvider = GitHubButtonProvider;
 exports.GitHubButton = GitHubButton;

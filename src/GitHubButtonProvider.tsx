@@ -76,17 +76,19 @@ export default class GitHubButtonProvider extends React.Component<GitHubButtonPr
       this.setState({namespace: newState});
     })
 
-    this.repoXhr = ajaxGet(this.getRepoRequestUrl(), (data: any) => {
-      if (!data) return;
-      let newState = this.state.repo;
-      for (const t in typeToGitHubKey) {
-        if (data.hasOwnProperty(typeToGitHubKey[t])) {
-          newState[t] = data[typeToGitHubKey[t]];
+    if (this.props.repo) {
+      this.repoXhr = ajaxGet(this.getRepoRequestUrl(), (data: any) => {
+        if (!data) return;
+        let newState = this.state.repo;
+        for (const t in typeToGitHubKey) {
+          if (data.hasOwnProperty(typeToGitHubKey[t])) {
+            newState[t] = data[typeToGitHubKey[t]];
+          }
         }
-      }
-      console.log('repo:', newState);
-      this.setState({repo: newState});
-    });
+        console.log('repo:', newState);
+        this.setState({repo: newState});
+      });
+    }
   }
 
   componentWillUnmount() {
