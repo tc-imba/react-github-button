@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-github-button/static/css/main.57ce4ddb.chunk.css",
-    "main.js": "/react-github-button/static/js/main.136fbdc1.chunk.js",
-    "main.js.map": "/react-github-button/static/js/main.136fbdc1.chunk.js.map",
+    "main.css": "/react-github-button/static/css/main.d5a81aac.chunk.css",
+    "main.js": "/react-github-button/static/js/main.389e409e.chunk.js",
+    "main.js.map": "/react-github-button/static/js/main.389e409e.chunk.js.map",
     "runtime-main.js": "/react-github-button/static/js/runtime-main.18794340.js",
     "runtime-main.js.map": "/react-github-button/static/js/runtime-main.18794340.js.map",
     "static/js/2.541d514d.chunk.js": "/react-github-button/static/js/2.541d514d.chunk.js",
     "static/js/2.541d514d.chunk.js.map": "/react-github-button/static/js/2.541d514d.chunk.js.map",
     "index.html": "/react-github-button/index.html",
-    "precache-manifest.29de39546599fc3ac3110a0f191d04b7.js": "/react-github-button/precache-manifest.29de39546599fc3ac3110a0f191d04b7.js",
+    "precache-manifest.7860de0cd45294ab3732fe5e8314c679.js": "/react-github-button/precache-manifest.7860de0cd45294ab3732fe5e8314c679.js",
     "service-worker.js": "/react-github-button/service-worker.js",
-    "static/css/main.57ce4ddb.chunk.css.map": "/react-github-button/static/css/main.57ce4ddb.chunk.css.map",
+    "static/css/main.d5a81aac.chunk.css.map": "/react-github-button/static/css/main.d5a81aac.chunk.css.map",
     "static/js/2.541d514d.chunk.js.LICENSE.txt": "/react-github-button/static/js/2.541d514d.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/react-github-button/static/media/logo.5d5d9eef.svg"
+    "static/media/logo.svg": "/react-github-button/static/media/logo.ee7cd8ed.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.18794340.js",
     "static/js/2.541d514d.chunk.js",
-    "static/css/main.57ce4ddb.chunk.css",
-    "static/js/main.136fbdc1.chunk.js"
+    "static/css/main.d5a81aac.chunk.css",
+    "static/js/main.389e409e.chunk.js"
   ]
 }
