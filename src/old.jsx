@@ -38,7 +38,7 @@ export default class GitHubButton extends React.Component {
     count: null,
   };
   componentDidMount() {
-    this.xhr = ajaxGet(this.getRequestUrl(), (response) => {
+    this.repoXhr = ajaxGet(this.getRequestUrl(), (response) => {
       this.setCount(response);
     });
   }

@@ -10,7 +10,7 @@ Unofficial GitHub buttons in React.
 ## Installation
 
 ```bash
-npm install --save react-github-button
+npm install --save tc-imba/react-github-button
 ```
 
 ## Usage

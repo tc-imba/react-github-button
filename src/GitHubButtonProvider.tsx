@@ -15,45 +15,79 @@ export interface GitHubButtonProviderProps {
 }
 
 export interface GitHubButtonProviderState {
-  stargazers: number | null;
-  watchers: number | null;
-  forks: number | null;
+  namespace: {
+    followers: number | null;
+    following: number | null;
+    public_repos: number | null;
+    public_gists: number | null;
+  },
+  repo: {
+    stargazers: number | null;
+    watchers: number | null;
+    forks: number | null;
+  }
 }
 
 export default class GitHubButtonProvider extends React.Component<GitHubButtonProviderProps, GitHubButtonProviderState> {
-  xhr: any = null;
+  namespaceXhr: any = null;
+  repoXhr: any = null;
 
   constructor(props: GitHubButtonProviderProps, context: any) {
     super(props, context);
     this.state = {
-      stargazers: null,
-      watchers: null,
-      forks: null,
+      namespace: {
+        followers: null,
+        following: null,
+        public_repos: null,
+        public_gists: null,
+      },
+      repo: {
+        stargazers: null,
+        watchers: null,
+        forks: null,
+      },
     };
   }
 
-  getRequestUrl() {
+  getNamespaceRequestUrl() {
+    const {namespace} = this.props;
+    return `//api.github.com/users/${namespace}`;
+  }
+
+  getRepoRequestUrl() {
     const {namespace, repo} = this.props;
     return `//api.github.com/repos/${namespace}/${repo}`;
   }
 
   updateState() {
-    this.xhr = ajaxGet(this.getRequestUrl(), (data: any) => {
+    this.namespaceXhr = ajaxGet(this.getNamespaceRequestUrl(), (data:any) => {
       if (!data) return;
-      let newState = this.state;
+      let newState = this.state.namespace;
+      for (const t in this.state.namespace) {
+        if (data.hasOwnProperty(t)) {
+          newState[t] = data[t];
+        }
+      }
+      console.log('namespace:', newState);
+      this.setState({namespace: newState});
+    })
+
+    this.repoXhr = ajaxGet(this.getRepoRequestUrl(), (data: any) => {
+      if (!data) return;
+      let newState = this.state.repo;
       for (const t in typeToGitHubKey) {
         if (data.hasOwnProperty(typeToGitHubKey[t])) {
           newState[t] = data[typeToGitHubKey[t]];
         }
       }
-      console.log(newState);
-      this.setState(newState);
+      console.log('repo:', newState);
+      this.setState({repo: newState});
     });
   }
 
   componentWillUnmount() {
-    if (this.xhr) {
-      this.xhr.abort();
+    if (this.repoXhr) {
+      this.repoXhr.abort();
     }
   }
 
@@ -70,9 +104,14 @@ export default class GitHubButtonProvider extends React.Component<GitHubButtonPr
 
   render() {
     const state = {
-      ...this.state,
-      namespace: this.props.namespace,
-      repo: this.props.repo,
+      namespace: {
+        name: this.props.namespace,
+        ...this.state.namespace,
+      },
+      repo: {
+        name: this.props.repo,
+        ...this.state.repo
+      }
     };
     return (
       <GitHubButtonContext.Provider value={state}>

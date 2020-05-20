@@ -4,14 +4,24 @@ export interface GitHubButtonProviderProps {
     repo: string;
 }
 export interface GitHubButtonProviderState {
-    stargazers: number | null;
-    watchers: number | null;
-    forks: number | null;
+    namespace: {
+        followers: number | null;
+        following: number | null;
+        public_repos: number | null;
+        public_gists: number | null;
+    };
+    repo: {
+        stargazers: number | null;
+        watchers: number | null;
+        forks: number | null;
+    };
 }
 export default class GitHubButtonProvider extends React.Component<GitHubButtonProviderProps, GitHubButtonProviderState> {
-    xhr: any;
+    namespaceXhr: any;
+    repoXhr: any;
     constructor(props: GitHubButtonProviderProps, context: any);
-    getRequestUrl(): string;
+    getNamespaceRequestUrl(): string;
+    getRepoRequestUrl(): string;
     updateState(): void;
     componentWillUnmount(): void;
     componentDidUpdate(prevProps: Readonly<GitHubButtonProviderProps>): void;
