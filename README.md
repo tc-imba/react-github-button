@@ -70,7 +70,7 @@ export interface GitHubButtonProps {
 ```typescript
 export interface GitHubButtonProviderProps {
   namespace: string; // Your GitHub id or organization name.
-  repo: string;      // The name of your repository.
+  repo?: string;     // The name of your repository.
 }
 ```
 

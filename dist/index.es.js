@@ -68,6 +68,7 @@ var defaultGitHubButtonState = {
     },
 };
 var GitHubButtonContext = createContext(defaultGitHubButtonState);
+//# sourceMappingURL=context.js.map
 
 function ajaxGet(url, callback) {
     // @ts-ignore
@@ -86,6 +87,7 @@ function ajaxGet(url, callback) {
     xhr.send();
     return xhr;
 }
+//# sourceMappingURL=ajaxGet.js.map
 
 var typeToGitHubKey = {
     stargazers: 'stargazers_count',
@@ -165,9 +167,12 @@ var GitHubButtonProvider = /** @class */ (function (_super) {
     GitHubButtonProvider.prototype.render = function () {
         var state = {
             namespace: __assign({ name: this.props.namespace }, this.state.namespace),
-            repo: __assign({ name: this.props.repo }, this.state.repo)
+            repo: __assign({ name: this.props.repo || "" }, this.state.repo)
         };
         return (createElement(GitHubButtonContext.Provider, { value: state }, this.props.children));
+    };
+    GitHubButtonProvider.defaultProps = {
+        repo: ""
     };
     return GitHubButtonProvider;
 }(Component));
@@ -275,6 +280,9 @@ var GitHubButton = /** @class */ (function (_super) {
     return GitHubButton;
 }(Component));
 GitHubButton.contextType = GitHubButtonContext;
+//# sourceMappingURL=GitHubButton.js.map
+
+//# sourceMappingURL=index.js.map
 
 export { GitHubButtonProvider, GitHubButton };
 //# sourceMappingURL=index.es.js.map

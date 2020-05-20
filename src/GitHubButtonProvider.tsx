@@ -11,7 +11,7 @@ const typeToGitHubKey = {
 
 export interface GitHubButtonProviderProps {
   namespace: string; // Your GitHub id or organization name.
-  repo: string;      // The name of your repository.
+  repo?: string;     // The name of your repository.
 }
 
 export interface GitHubButtonProviderState {
@@ -31,6 +31,10 @@ export interface GitHubButtonProviderState {
 export default class GitHubButtonProvider extends React.Component<GitHubButtonProviderProps, GitHubButtonProviderState> {
   namespaceXhr: any = null;
   repoXhr: any = null;
+
+  static defaultProps = {
+    repo: ""
+  }
 
   constructor(props: GitHubButtonProviderProps, context: any) {
     super(props, context);
@@ -109,7 +113,7 @@ export default class GitHubButtonProvider extends React.Component<GitHubButtonPr
         ...this.state.namespace,
       },
       repo: {
-        name: this.props.repo,
+        name: this.props.repo || "",
         ...this.state.repo
       }
     };

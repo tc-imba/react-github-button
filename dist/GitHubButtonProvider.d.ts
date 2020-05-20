@@ -1,7 +1,7 @@
 import * as React from 'react';
 export interface GitHubButtonProviderProps {
     namespace: string;
-    repo: string;
+    repo?: string;
 }
 export interface GitHubButtonProviderState {
     namespace: {
@@ -19,6 +19,9 @@ export interface GitHubButtonProviderState {
 export default class GitHubButtonProvider extends React.Component<GitHubButtonProviderProps, GitHubButtonProviderState> {
     namespaceXhr: any;
     repoXhr: any;
+    static defaultProps: {
+        repo: string;
+    };
     constructor(props: GitHubButtonProviderProps, context: any);
     getNamespaceRequestUrl(): string;
     getRepoRequestUrl(): string;
