@@ -10,8 +10,8 @@ const typeToGitHubKey = {
 };
 
 export interface GitHubButtonProviderProps {
-  namespace: string;
-  repo: string;
+  namespace: string; // Your GitHub id or organization name.
+  repo: string;      // The name of your repository.
 }
 
 export interface GitHubButtonProviderState {

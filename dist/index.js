@@ -72,7 +72,6 @@ var defaultGitHubButtonState = {
     },
 };
 var GitHubButtonContext = React.createContext(defaultGitHubButtonState);
-//# sourceMappingURL=context.js.map
 
 function ajaxGet(url, callback) {
     // @ts-ignore
@@ -91,7 +90,6 @@ function ajaxGet(url, callback) {
     xhr.send();
     return xhr;
 }
-//# sourceMappingURL=ajaxGet.js.map
 
 var typeToGitHubKey = {
     stargazers: 'stargazers_count',
@@ -177,7 +175,6 @@ var GitHubButtonProvider = /** @class */ (function (_super) {
     };
     return GitHubButtonProvider;
 }(React.Component));
-//# sourceMappingURL=GitHubButtonProvider.js.map
 
 var classNames = function (classSet) {
     return Object.keys(classSet).filter(function (key) { return classSet[key]; }).join(' ');
@@ -282,8 +279,6 @@ var GitHubButton = /** @class */ (function (_super) {
     return GitHubButton;
 }(React.Component));
 GitHubButton.contextType = GitHubButtonContext;
-
-//# sourceMappingURL=index.js.map
 
 exports.GitHubButtonProvider = GitHubButtonProvider;
 exports.GitHubButton = GitHubButton;
